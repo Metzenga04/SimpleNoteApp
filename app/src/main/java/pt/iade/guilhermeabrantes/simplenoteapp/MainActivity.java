@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.GregorianCalendar;
+
+import pt.iade.guilhermeabrantes.simplenoteapp.models.NoteItem;
+
     public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +31,9 @@ import android.view.MenuItem;
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             if (item.getItemId() == R.id.action_new_item){
                 Intent intent =new Intent(MainActivity.this, NoteActivity.class);
+
+                intent.putExtra("item",new NoteItem());
+
                 startActivity(intent);
                 return true;
             }

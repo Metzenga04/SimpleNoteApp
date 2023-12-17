@@ -27,7 +27,10 @@ public class NoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
-        item = new NoteItem(1,true,"Interesting title",new GregorianCalendar(),"Some description here");
+
+        Intent intent = getIntent();
+        item = (NoteItem) intent.getSerializableExtra("item");
+
         setupComponents();
     }
 

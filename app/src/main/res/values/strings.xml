@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SimpleNoteApp</string>
+    <string name="edit_note_item">Edit a note</string>
+    <string name="title_hint">Write a title here</string>
+    <string name="notes_label">Notes</string>
+    <string name="notes_hint">Write a note here...</string>
+    <string name="new_item_menu">New Note</string>
+    <string name="save_item_menu">Save Note</string>
 </resources>

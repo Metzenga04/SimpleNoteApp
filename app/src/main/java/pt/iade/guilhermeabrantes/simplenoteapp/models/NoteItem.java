@@ -1,6 +1,7 @@
 package pt.iade.guilhermeabrantes.simplenoteapp.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -20,6 +21,25 @@ public class NoteItem implements Serializable {
         this.title =title;
         this.date= date;
         this.notes = notes;
+    }
+
+    public static ArrayList<NoteItem> List(){
+        ArrayList<NoteItem> items = new ArrayList<NoteItem>();
+
+        items.add(new NoteItem(1,false,"First Note item", new GregorianCalendar(),
+            "Some discription"));
+        items.add(new NoteItem(2,true,"Finish Task", new GregorianCalendar(),
+                "Some discription"));
+        items.add(new NoteItem(3,false,"A future note", new GregorianCalendar(2023,12,10),
+                ""));
+        items.add(new NoteItem(4,false,"Play a song", new GregorianCalendar(23,12,24),
+                "siuuuuuuuuu"));
+
+        return items;
+
+    }
+    public static NoteItem GetById(int id){
+        return new NoteItem(id,false,"yeah",new GregorianCalendar(),"pois e");
     }
 
     public int getId() {

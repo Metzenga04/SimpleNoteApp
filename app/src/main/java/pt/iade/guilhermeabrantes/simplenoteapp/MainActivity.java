@@ -2,22 +2,30 @@
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import pt.iade.guilhermeabrantes.simplenoteapp.models.NoteItem;
 
     public class MainActivity extends AppCompatActivity {
 
+        protected RecyclerView itemsListView;
+        protected ArrayList<NoteItem> itemsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        itemsList = NoteItem.List();
         setupComponents();
     }
 
@@ -42,5 +50,8 @@ import pt.iade.guilhermeabrantes.simplenoteapp.models.NoteItem;
 
         private void setupComponents(){
         setSupportActionBar(findViewById(R.id.toolbar));
+
+        itemsListView = (RecyclerView) findViewById(R.id.note_list);
+        itemsListView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

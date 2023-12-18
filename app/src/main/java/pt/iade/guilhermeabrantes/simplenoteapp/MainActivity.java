@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -53,6 +54,16 @@ import pt.iade.guilhermeabrantes.simplenoteapp.models.NoteItem;
         setSupportActionBar(findViewById(R.id.toolbar));
 
         itemAdapter = new NoteItemAdapter(this, itemsList);
+        itemAdapter.setClickListener((new NoteItemAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent =new Intent(MainActivity.this, NoteActivity.class);
+
+                intent.putExtra("item",itemsList.get(position));
+
+                startActivity(intent);
+            }
+        }));
 
         itemsListView = (RecyclerView) findViewById(R.id.note_list);
         itemsListView.setLayoutManager(new LinearLayoutManager(this));

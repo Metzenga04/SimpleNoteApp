@@ -22,6 +22,7 @@ public class NoteActivity extends AppCompatActivity {
     protected CheckBox doneCheck;
     protected CalendarView calendar;
     protected EditText notesEdit;
+    protected int listPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class NoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note);
 
         Intent intent = getIntent();
+        listPosition = intent.getIntExtra("position",-1);
         item = (NoteItem) intent.getSerializableExtra("item");
 
         setupComponents();
@@ -44,6 +46,15 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_save_item){
+            commitView();
+            this.item.save();
+
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("position",this.listPosition);
+
+            returnIntent.putExtra("item",this.item);
+            setResult(AppCompatActivity.RESULT_OK, returnIntent);
+
             finish();
             return true;
         }
@@ -63,5 +74,13 @@ public class NoteActivity extends AppCompatActivity {
         doneCheck.setChecked(item.isDone());
         calendar.setDate(item.getDate().getTimeInMillis());
         notesEdit.setText(item.getNotes());
+    }
+    protected void commitView(){
+        item.setTitle(titleEdit.getText().toString());
+        item.setDone(doneCheck.isChecked());
+        item.setNotes(notesEdit.getText().toString());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(this.calendar.getDate());
+        item.setDate(calendar);
     }
 }

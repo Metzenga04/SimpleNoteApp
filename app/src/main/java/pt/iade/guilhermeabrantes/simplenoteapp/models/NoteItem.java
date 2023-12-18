@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Random;
 
 public class NoteItem implements Serializable {
     private int id;
@@ -41,7 +42,13 @@ public class NoteItem implements Serializable {
     public static NoteItem GetById(int id){
         return new NoteItem(id,false,"yeah",new GregorianCalendar(),"pois e");
     }
+    public void save() {
+        if (id == 0) {
+            id = new Random().nextInt(1000) + 1;
+        } else {
 
+        }
+    }
     public int getId() {
         return id;
     }

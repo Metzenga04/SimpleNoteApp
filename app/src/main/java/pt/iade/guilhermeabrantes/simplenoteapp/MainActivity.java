@@ -14,11 +14,12 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import pt.iade.guilhermeabrantes.simplenoteapp.adapters.NoteItemAdapter;
 import pt.iade.guilhermeabrantes.simplenoteapp.models.NoteItem;
 
     public class MainActivity extends AppCompatActivity {
-
         protected RecyclerView itemsListView;
+        protected NoteItemAdapter itemAdapter;
         protected ArrayList<NoteItem> itemsList;
 
     @Override
@@ -51,7 +52,10 @@ import pt.iade.guilhermeabrantes.simplenoteapp.models.NoteItem;
         private void setupComponents(){
         setSupportActionBar(findViewById(R.id.toolbar));
 
+        itemAdapter = new NoteItemAdapter(this, itemsList);
+
         itemsListView = (RecyclerView) findViewById(R.id.note_list);
         itemsListView.setLayoutManager(new LinearLayoutManager(this));
+        itemsListView.setAdapter(itemAdapter);
     }
 }

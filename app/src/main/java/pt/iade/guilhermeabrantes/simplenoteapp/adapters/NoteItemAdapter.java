@@ -53,13 +53,14 @@ public class NoteItemAdapter extends RecyclerView.Adapter<NoteItemAdapter.ViewHo
 
         public TextView titleLabel;
         public TextView notesLabel;
+        public TextView dateLabel;
         public CheckBox doneCheck;
 
         public ViewHolder(View itemView){
             super(itemView);
             titleLabel = itemView.findViewById(R.id.title_label);
             notesLabel = itemView.findViewById(R.id.notes_label);
-            doneCheck = itemView.findViewById(R.id.done_check);
+            dateLabel = itemView.findViewById(R.id.date_label);
 
             itemView.setOnClickListener(this);
         }

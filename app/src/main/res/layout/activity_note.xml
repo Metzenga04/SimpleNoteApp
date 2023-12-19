@@ -93,17 +93,18 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
+        android:hint="Date of modification"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />
 
     <TextView
-        android:layout_width="71dp"
-        android:layout_height="17dp"
+        android:layout_width="85dp"
+        android:layout_height="20dp"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="10dp"
-        android:text="Create On:"
+        android:text="Changed On:"
         app:layout_constraintEnd_toStartOf="@+id/creationDate"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />
 

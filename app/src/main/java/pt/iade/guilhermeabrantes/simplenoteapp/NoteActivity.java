@@ -24,7 +24,7 @@ public class NoteActivity extends AppCompatActivity {
     protected CheckBox doneCheck;
     protected CalendarView calendar;
     protected EditText creationDate;
-    protected String modifiedDate;
+    protected EditText modifiedDate;
     protected TextView content;
     protected int listPosition;
 
@@ -62,8 +62,21 @@ public class NoteActivity extends AppCompatActivity {
             finish();
             return true;
         }
+        if (item.getItemId()== R.id.action_delete_item){
+            commitView();
+            this.item.delete();
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("position",this.listPosition);
+
+            returnIntent.putExtra("item",this.item);
+            setResult(AppCompatActivity.RESULT_CANCELED, returnIntent);
+
+            finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+
 
     private void setupComponents(){
         setSupportActionBar(findViewById(R.id.toolbar));

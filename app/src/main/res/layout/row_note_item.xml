@@ -42,6 +42,12 @@
             android:layout_height="wrap_content"
             tools:text="perfect" />
 
+        <TextView
+            android:id="@+id/date_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="date" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

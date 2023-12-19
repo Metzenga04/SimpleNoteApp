@@ -8,39 +8,35 @@ import java.util.Random;
 
 public class NoteItem implements Serializable {
     private int id;
-    private boolean done;
     private String title;
-    private Calendar date;
-    private String notes;
+    private String creationDate;
+    private String content;
+    private String modifiedDate;
 
     public NoteItem(){
-        this(0,false,"",new GregorianCalendar(),"");
+        this(0,"","20/10/23","","");
     }
-    public NoteItem(int id,boolean done, String title, Calendar date, String notes) {
+    public NoteItem(int id, String title,String creationDate, String notes,String modifiedDate) {
         this.id = id;
-        this.done = done;
-        this.title =title;
-        this.date= date;
-        this.notes = notes;
+        this.creationDate = creationDate;
+        this.title = title;
+        this.modifiedDate= modifiedDate;
+        this.content = notes;
     }
 
     public static ArrayList<NoteItem> List(){
         ArrayList<NoteItem> items = new ArrayList<NoteItem>();
 
-        items.add(new NoteItem(1,false,"First Note item", new GregorianCalendar(),
-            "Some discription"));
-        items.add(new NoteItem(2,true,"Finish Task", new GregorianCalendar(),
-                "Some discription"));
-        items.add(new NoteItem(3,false,"A future note", new GregorianCalendar(2023,12,10),
-                ""));
-        items.add(new NoteItem(4,false,"Play a song", new GregorianCalendar(23,12,24),
-                "siuuuuuuuuu"));
+        items.add(new NoteItem(1,"First Note item","10/12/23","some notes here!!!", ""));
+        items.add(new NoteItem(2,"Future Note","2/09/23","", "Some good things"));
+        items.add(new NoteItem(3,"Nice one note", "4/05/23","", ""));
+        items.add(new NoteItem(4,"Play a song","16/09/23","", "siuuuuuuuuu"));
 
         return items;
 
     }
     public static NoteItem GetById(int id){
-        return new NoteItem(id,false,"yeah",new GregorianCalendar(),"pois e");
+        return new NoteItem(id,"yeah","9/5/23","","pois e");
     }
     public void save() {
         if (id == 0) {
@@ -49,16 +45,13 @@ public class NoteItem implements Serializable {
 
         }
     }
+    public void delete(){
+        if(id == 0){
+            id =  new Random().nextInt(1000) + 1;
+        }
+    }
     public int getId() {
         return id;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
     }
 
     public String getTitle() {
@@ -69,19 +62,31 @@ public class NoteItem implements Serializable {
         this.title = title;
     }
 
-    public Calendar getDate() {
-        return date;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setDate(Calendar date) {
-        this.date = date;
+    public String getCreationDate() {
+        return creationDate;
     }
 
-    public String getNotes() {
-        return notes;
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(String modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 }

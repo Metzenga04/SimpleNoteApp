@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,7 +23,9 @@ public class NoteActivity extends AppCompatActivity {
     protected EditText titleEdit;
     protected CheckBox doneCheck;
     protected CalendarView calendar;
-    protected EditText notesEdit;
+    protected EditText creationDate;
+    protected String modifiedDate;
+    protected TextView content;
     protected int listPosition;
 
     @Override
@@ -65,22 +69,26 @@ public class NoteActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbar));
         titleEdit =(EditText) findViewById(R.id.title_edit);
         doneCheck =(CheckBox) findViewById(R.id.done_check);
+        doneCheck.setVisibility(View.GONE);
+        creationDate = (EditText) findViewById(R.id.creationDate);
         calendar = (CalendarView) findViewById(R.id.calendar);
-        notesEdit = (EditText) findViewById(R.id.notes_edit);
+        content = (EditText) findViewById(R.id.notes_edit);
         populateview();
+        calendar.setVisibility(View.GONE);
     }
     protected void populateview(){
         titleEdit.setText(item.getTitle());
-        doneCheck.setChecked(item.isDone());
-        calendar.setDate(item.getDate().getTimeInMillis());
-        notesEdit.setText(item.getNotes());
+        content.setText(item.getContent());
+        creationDate.setText(item.getCreationDate());
+
+        calendar.setVisibility(View.GONE);
     }
     protected void commitView(){
+        calendar.setVisibility(View.GONE);
+        doneCheck.setVisibility(View.GONE);
         item.setTitle(titleEdit.getText().toString());
-        item.setDone(doneCheck.isChecked());
-        item.setNotes(notesEdit.getText().toString());
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(this.calendar.getDate());
-        item.setDate(calendar);
+        item.setContent(content.getText().toString());
+        item.setCreationDate(creationDate.getText().toString());
+
     }
 }

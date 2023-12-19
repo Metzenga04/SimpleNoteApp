@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ import pt.iade.guilhermeabrantes.simplenoteapp.R;
 import pt.iade.guilhermeabrantes.simplenoteapp.models.NoteItem;
 
 public class NoteItemAdapter extends RecyclerView.Adapter<NoteItemAdapter.ViewHolder> {
-    private ArrayList<NoteItem> items;
-    private LayoutInflater inflater;
+    private final ArrayList<NoteItem> items;
+    private final LayoutInflater inflater;
     private ItemClickListener clickListener;
 
     public NoteItemAdapter(Context context,ArrayList<NoteItem> items){
@@ -26,11 +27,12 @@ public class NoteItemAdapter extends RecyclerView.Adapter<NoteItemAdapter.ViewHo
         clickListener = null;
     }
 
-    public void setClickListener(ItemClickListener listener){
+    public void setClickListener(ItemClickListener listener)    {
         clickListener = listener;
     }
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View view = inflater.inflate(R.layout.row_note_item,parent,false);
         return new ViewHolder(view);
     }
@@ -38,9 +40,9 @@ public class NoteItemAdapter extends RecyclerView.Adapter<NoteItemAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position){
         NoteItem item = items.get(position);
 
-        holder.doneCheck.setChecked(item.isDone());
         holder.titleLabel.setText(item.getTitle());
-        holder.notesLabel.setText(item.getNotes());
+        holder.notesLabel.setText(item.getContent());
+
     }
     @Override
     public int getItemCount(){
